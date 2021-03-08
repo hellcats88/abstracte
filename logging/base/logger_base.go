@@ -26,7 +26,8 @@ func New(config logging.Config, writeMessageCallback WriteMessage) logging.Logge
 	}
 
 	if len(log.config.Order) == 0 {
-		log.config.Order = append(log.config.Order, logging.Level, logging.Timestamp, logging.CorrelationId, logging.Message, logging.Extra)
+		log.config.Order = append(log.config.Order, logging.PartOrderLevel, logging.PartOrderTimestamp,
+			logging.PartOrderCorrelationId, logging.PartOrderMessage, logging.PartOrderExtra)
 	}
 
 	if log.config.ExtraParametersFormat == nil {
@@ -58,26 +59,26 @@ func (cns base) composeMessage(level string, ctx logging.Context, message string
 
 	for _, part := range cns.config.Order {
 		switch part {
-		case logging.Level:
+		case logging.PartOrderLevel:
 			if !cns.config.SkipPrintLevel {
 				msg += level + ":"
 			}
 
-		case logging.Timestamp:
+		case logging.PartOrderTimestamp:
 			if !cns.config.SkipPrintTimestamp {
 				str, _ := cns.config.CustomTime()
 				msg += "[" + str + "]:"
 			}
 
-		case logging.CorrelationId:
+		case logging.PartOrderCorrelationId:
 			if !cns.config.SkipPrintCorrelationID {
 				msg += "[" + ctx.CorrID() + "]:"
 			}
 
-		case logging.Message:
+		case logging.PartOrderMessage:
 			msg += message
 
-		case logging.Extra:
+		case logging.PartOrderExtra:
 			if len(ctx.GetExtras()) > 0 {
 				if msg != "" {
 					msg += ":" + cns.config.ExtraParametersPrefix + cns.config.ExtraParametersFormat(ctx.GetExtras())
@@ -158,7 +159,7 @@ func (cns base) EndMethod(ctx logging.Context) {
 	}
 }
 
-func (cns LoggerBase) EndMethodParams(ctx logging.Context, format string, params ...interface{}) {
+func (cns base) EndMethodParams(ctx logging.Context, format string, params ...interface{}) {
 	if logging.Debug <= cns.config.Level {
 		fpcs := make([]uintptr, 1)
 		runtime.Callers(2, fpcs)
