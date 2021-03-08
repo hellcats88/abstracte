@@ -5,7 +5,7 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/hellcats88/abstracte/lib/logging"
+	"github.com/hellcats88/abstracte/logging"
 )
 
 func defaultExtraParameterFormat(extras []logging.K) string {
