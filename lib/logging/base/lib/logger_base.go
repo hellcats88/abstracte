@@ -14,13 +14,13 @@ func defaultExtraParameterFormat(extras []logging.K) string {
 
 type WriteMessage func(level logging.LoggerLevel, msg string)
 
-type LoggerBase struct {
+type base struct {
 	config               logging.Config
 	writeMessageCallback WriteMessage
 }
 
-func NewLoggerBase(config logging.Config, writeMessageCallback WriteMessage) logging.Logger {
-	log := LoggerBase{
+func New(config logging.Config, writeMessageCallback WriteMessage) logging.Logger {
+	log := base{
 		config:               config,
 		writeMessageCallback: writeMessageCallback,
 	}
@@ -53,7 +53,7 @@ func NewLoggerBase(config logging.Config, writeMessageCallback WriteMessage) log
 	return log
 }
 
-func (cns LoggerBase) composeMessage(level string, ctx logging.Context, message string) string {
+func (cns base) composeMessage(level string, ctx logging.Context, message string) string {
 	msg := ""
 
 	for _, part := range cns.config.Order {
@@ -94,7 +94,7 @@ func (cns LoggerBase) composeMessage(level string, ctx logging.Context, message 
 	return msg[:len(msg)-1]
 }
 
-func (cns LoggerBase) _print(ctx logging.Context, referenceLevel logging.LoggerLevel, levelText string, msg string, params ...interface{}) {
+func (cns base) _print(ctx logging.Context, referenceLevel logging.LoggerLevel, levelText string, msg string, params ...interface{}) {
 	if referenceLevel <= cns.config.Level {
 		if cns.config.CustomLogFormat != nil {
 			_, now := cns.config.CustomTime()
@@ -111,27 +111,27 @@ func (cns LoggerBase) _print(ctx logging.Context, referenceLevel logging.LoggerL
 	}
 }
 
-func (cns LoggerBase) Debug(ctx logging.Context, msg string, params ...interface{}) {
+func (cns base) Debug(ctx logging.Context, msg string, params ...interface{}) {
 	cns._print(ctx, logging.Debug, "DEBUG", msg, params...)
 }
 
-func (cns LoggerBase) Trace(ctx logging.Context, msg string, params ...interface{}) {
+func (cns base) Trace(ctx logging.Context, msg string, params ...interface{}) {
 	cns._print(ctx, logging.Trace, "TRACE", msg, params...)
 }
 
-func (cns LoggerBase) Error(ctx logging.Context, msg string, params ...interface{}) {
+func (cns base) Error(ctx logging.Context, msg string, params ...interface{}) {
 	cns._print(ctx, logging.Error, "ERROR", msg, params...)
 }
 
-func (cns LoggerBase) Info(ctx logging.Context, msg string, params ...interface{}) {
+func (cns base) Info(ctx logging.Context, msg string, params ...interface{}) {
 	cns._print(ctx, logging.Info, "INFO", msg, params...)
 }
 
-func (cns LoggerBase) Warn(ctx logging.Context, msg string, params ...interface{}) {
+func (cns base) Warn(ctx logging.Context, msg string, params ...interface{}) {
 	cns._print(ctx, logging.Warn, "WARN", msg, params...)
 }
 
-func (cns LoggerBase) BeginMethod(ctx logging.Context) {
+func (cns base) BeginMethod(ctx logging.Context) {
 	if logging.Debug <= cns.config.Level {
 		fpcs := make([]uintptr, 1)
 		runtime.Callers(2, fpcs)
@@ -140,7 +140,7 @@ func (cns LoggerBase) BeginMethod(ctx logging.Context) {
 	}
 }
 
-func (cns LoggerBase) BeginMethodParams(ctx logging.Context, format string, params ...interface{}) {
+func (cns base) BeginMethodParams(ctx logging.Context, format string, params ...interface{}) {
 	if logging.Debug <= cns.config.Level {
 		fpcs := make([]uintptr, 1)
 		runtime.Callers(2, fpcs)
@@ -149,7 +149,7 @@ func (cns LoggerBase) BeginMethodParams(ctx logging.Context, format string, para
 	}
 }
 
-func (cns LoggerBase) EndMethod(ctx logging.Context) {
+func (cns base) EndMethod(ctx logging.Context) {
 	if logging.Debug <= cns.config.Level {
 		fpcs := make([]uintptr, 1)
 		runtime.Callers(2, fpcs)
