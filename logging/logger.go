@@ -5,24 +5,24 @@ import (
 	"time"
 )
 
-// LoggerLevel defines the level type
-type LoggerLevel uint
+// Level defines the level type
+type Level uint
 
 const (
 	// Error level
-	Error LoggerLevel = 0
+	Error Level = 0
 
 	// Warn level
-	Warn LoggerLevel = 1
+	Warn Level = 1
 
 	// Info level
-	Info LoggerLevel = 2
+	Info Level = 2
 
 	// Debug level
-	Debug LoggerLevel = 3
+	Debug Level = 3
 
 	// Trace level
-	Trace LoggerLevel = 4
+	Trace Level = 4
 )
 
 // ExtraParametersFormatCallback defines the format of the string conversion of the parameter in K struct format
@@ -30,7 +30,7 @@ type ExtraParametersFormatCallback func([]K) string
 
 // CustomLogFormatData defines input parameters used to format a log message
 type CustomLogFormatData struct {
-	Level         LoggerLevel
+	Level         Level
 	Message       string
 	CurrentTime   time.Time
 	CorrelationID string
@@ -68,7 +68,7 @@ type Config struct {
 	ExtraParametersFormat ExtraParametersFormatCallback
 	CustomLogFormat       CustomLogFormatCallback
 	CustomTime            CustomTimeCallback
-	Level                 LoggerLevel
+	Level                 Level
 	TimeFormat            string
 	ExtraParametersPrefix string
 	Order                 []PartOrder
@@ -94,14 +94,14 @@ type Logger interface {
 }
 
 // LoggerFactory defines the behavior of the factory used to generate logging from a template at runtime
-type LoggerFactory interface {
+type Factory interface {
 	Create() Logger
 	CreateFromConfig(Config) Logger
 }
 
 // Atol converts a string into a logger level. Utility function
-func Atol(level string) LoggerLevel {
-	var logLevel LoggerLevel
+func Atol(level string) Level {
+	var logLevel Level
 	switch strings.ToLower(level) {
 	case "error":
 		logLevel = Error
