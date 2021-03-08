@@ -48,19 +48,19 @@ type PartOrder uint
 
 const (
 	// Print the level information of the final message, if requested
-	Level = 0x0
+	PartOrderLevel = 0x0
 
 	// Print the timestamp information of the final message, if requested
-	Timestamp = 0x1
+	PartOrderTimestamp = 0x1
 
 	// Print the level correlation id of the final message, if requested
-	CorrelationId = 0x2
+	PartOrderCorrelationId = 0x2
 
 	// Print the level information of the final message. Always printed
-	Message = 0x3
+	PartOrderMessage = 0x3
 
 	// Print the level information of the final message, only if there is one extra parameter
-	Extra = 0x4
+	PartOrderExtra = 0x4
 )
 
 // LoggerConfig is the configuration of the logger behavior
