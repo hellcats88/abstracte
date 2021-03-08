@@ -3,17 +3,13 @@ package env
 import "os"
 
 type Context struct {
-	name string
+	Name string
 }
 
 func New(name string) Context {
-	return Context{name: name}
+	return Context{Name: name}
 }
 
 func NewFromEnvVar(name string) Context {
-	return Context{name: os.Getenv(name)}
-}
-
-func (c Context) Name() string {
-	return c.name
+	return Context{Name: os.Getenv(name)}
 }
