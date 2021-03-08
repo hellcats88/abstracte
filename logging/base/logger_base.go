@@ -12,7 +12,7 @@ func defaultExtraParameterFormat(extras []logging.K) string {
 	return fmt.Sprintf("%+v", extras)
 }
 
-type WriteMessage func(level logging.LoggerLevel, msg string)
+type WriteMessage func(level logging.Level, msg string)
 
 type base struct {
 	config               logging.Config
@@ -95,7 +95,7 @@ func (cns base) composeMessage(level string, ctx logging.Context, message string
 	return msg[:len(msg)-1]
 }
 
-func (cns base) _print(ctx logging.Context, referenceLevel logging.LoggerLevel, levelText string, msg string, params ...interface{}) {
+func (cns base) _print(ctx logging.Context, referenceLevel logging.Level, levelText string, msg string, params ...interface{}) {
 	if referenceLevel <= cns.config.Level {
 		if cns.config.CustomLogFormat != nil {
 			_, now := cns.config.CustomTime()
