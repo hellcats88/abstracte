@@ -1,0 +1,6 @@
+github.com/google/uuid v1.2.0 h1:qJYtXnJRWmpe7m/3XlyhrsLrEURqHRM2kxzoxXqyUDs=
+github.com/google/uuid v1.2.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
+github.com/hellcats88/abstracte v0.0.0-20210305085934-c7ff111170d4 h1:LLajlpXMZuazSljyoTCR3GdLPsXRIZZQqHv53n/YwKo=
+github.com/hellcats88/abstracte v0.0.0-20210305085934-c7ff111170d4/go.mod h1:7iN4u7AocxD/HX0QoeoKllqxc5kPDJOOW2NzWyHrlmo=
+github.com/hellcats88/abstracte v0.0.0-20210308082806-1734accfb0f9 h1:wZqp+FqCdTF2qAqcdI2dRh6Dx3MIOsDqOyST5t/Kmmk=
+github.com/hellcats88/abstracte v0.0.0-20210308082806-1734accfb0f9/go.mod h1:37JdHPR/3d1ng23oS/2VgSLrqbNvxaemu3EamORk6Nk=
