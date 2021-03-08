@@ -1,10 +1,10 @@
-package std
+package golog
 
 import (
 	"log"
 
-	"github.com/hellcats88/abstracte/lib/logging/base"
 	"github.com/hellcats88/abstracte/logging"
+	"github.com/hellcats88/abstracte/logging/base"
 )
 
 func writeWithStd(level logging.LoggerLevel, msg string) {
