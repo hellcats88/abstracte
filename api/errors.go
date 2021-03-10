@@ -9,4 +9,5 @@ const (
 	ApiErrorEntityAlreadyExists  ApiError = 0x3
 	ApiErrorUnknownItemRequested ApiError = 0x4
 	ApiErrorMissingRequiredItem  ApiError = 0x5
+	ApiErrorAuthFailed           ApiError = 0x6
 )

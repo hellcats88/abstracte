@@ -6,6 +6,7 @@ type HandlerReturn struct {
 	HttpStatus    int
 	Err           ApiError
 	ErrNative     error
+	ErrMessage    string
 	ResponseModel interface{}
 }
 
