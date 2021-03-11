@@ -1,13 +1,5 @@
 package api
 
-type HandlerReturn struct {
-	HttpStatus    int
-	Err           ApiError
-	ErrNative     error
-	ErrMessage    string
-	ResponseModel interface{}
-}
-
 type ConfigLog uint
 
 const (
@@ -23,5 +15,8 @@ const (
 )
 
 type ApiConfig struct {
-	Tenant ConfigTenant
+	CustomPreHandlers  []interface{}
+	CustomMidHandlers  []interface{}
+	CustomPostHandlers []interface{}
+	Tenant             ConfigTenant
 }

@@ -1,12 +1,7 @@
 package api
 
-type HttpGroup struct {
-	Name    string
-	SubPath string
-}
-
 type Http interface {
-	AddGroup(item HttpGroup)
+	AddGroup(name string, subPath string, config ApiConfig) error
 	AddRoute(path string)
 	AddGroupRoute(path string, group string)
 	Listen(port int, address string)
