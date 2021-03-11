@@ -1,7 +1,5 @@
 package api
 
-import "github.com/hellcats88/abstracte/tenant"
-
 type HandlerReturn struct {
 	HttpStatus    int
 	Err           ApiError
@@ -10,8 +8,20 @@ type HandlerReturn struct {
 	ResponseModel interface{}
 }
 
-type RetriveTenant func(ctx interface{}) (tenant.Context, HandlerReturn)
+type ConfigLog uint
+
+const (
+	ConfigLogRandom      ConfigLog = 0x0
+	ConfigLogFromHeaders ConfigLog = 0x1
+)
+
+type ConfigTenant uint
+
+const (
+	ConfigTenantNo          ConfigTenant = 0x0
+	ConfigTenantFromHeaders ConfigTenant = 0x1
+)
 
 type ApiConfig struct {
-	TenantRetriever RetriveTenant
+	Tenant ConfigTenant
 }
