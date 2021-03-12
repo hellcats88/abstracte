@@ -20,18 +20,18 @@ const (
 	ConfigTenantFromHeaders ConfigTenant = 0x1
 )
 
-type ApiConfig struct {
+type Config struct {
 	Log    ConfigLog
 	Tenant ConfigTenant
 }
 
-type ApiConfigGroup struct {
-	ApiConfig
+type ConfigGroup struct {
+	Config
 	CustomHandlers []interface{}
 }
 
-type ApiConfigRoute struct {
-	ApiConfig
+type ConfigRoute struct {
+	Config
 	CustomPreServiceHandlers  []interface{}
 	CustomPostServiceHandlers []interface{}
 	ServiceHandler            []interface{}
