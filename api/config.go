@@ -14,9 +14,7 @@ const (
 	ConfigTenantFromHeaders ConfigTenant = 0x1
 )
 
-type ApiConfig struct {
-	CustomPreHandlers  []interface{}
-	CustomMidHandlers  []interface{}
-	CustomPostHandlers []interface{}
-	Tenant             ConfigTenant
+type ApiConfigGroup struct {
+	CustomHandlers []interface{}
+	Tenant         ConfigTenant
 }
