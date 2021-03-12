@@ -26,10 +26,3 @@ type Model struct {
 	// Business response of the service. Skipped if error occurs
 	Data interface{} `json:"data,omitempty"`
 }
-
-type Http interface {
-	AddGroup(name string, subPath string, config ConfigGroup) error
-	AddRoute(method string, path string, config ConfigRoute, service Service) error
-	AddGroupRoute(method string, path string, group string, config ConfigRoute, service Service)
-	Listen(port int, address string)
-}
