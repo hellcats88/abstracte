@@ -42,24 +42,19 @@ func (g *ginHttp) wrapService(service api.Service) gin.HandlerFunc {
 	}
 }
 
-func (g *ginHttp) definePreBehavior(config api.Config) []gin.HandlerFunc {
+func (g *ginHttp) defineBehavior(config api.Config) []gin.HandlerFunc {
 	var handlers []gin.HandlerFunc
 	handlers = append(handlers, func(c *gin.Context) { g.createLogContextFromHeaders(c) })
 
 	switch config.Tenant {
 	case api.ConfigTenantFromHeaders:
-		handlers = append(handlers, func(c *gin.Context) { g.retrieveTenant(c) })
+		handlers = append(handlers, func(c *gin.Context) { g.retrieveTenantFromHeaders(c) })
 	}
 
 	return handlers
 }
 
-func (g *ginHttp) definePostBehavior(config api.Config) []gin.HandlerFunc {
-	var handlers []gin.HandlerFunc
-	return handlers
-}
-
-func (g *ginHttp) retrieveTenant(ctx *gin.Context) {
+func (g *ginHttp) retrieveTenantFromHeaders(ctx *gin.Context) {
 	tCtx := tenant.Context{
 		Id:     ctx.GetHeader("X-Tenant-ID"),
 		UserId: ctx.GetHeader("X-Tenant-UserID"),
@@ -104,9 +99,9 @@ func (g ginHttp) AddGroup(name string, subPath string, config api.ConfigGroup) e
 	}
 
 	var handlers []gin.HandlerFunc
-	handlers = append(handlers, g.definePreBehavior(config.Config)...)
-	handlers = append(handlers, array_interface2HandlerFunc(config.CustomHandlers)...)
-	handlers = append(handlers, g.definePostBehavior(config.Config)...)
+	handlers = append(handlers, g.defineBehavior(config.Config)...)
+	handlers = append(handlers, array_interface2HandlerFunc(config.CustomPreHandlers)...)
+	handlers = append(handlers, array_interface2HandlerFunc(config.CustomPostHandlers)...)
 
 	g.groups[name] = g.engine.Group(subPath, handlers...)
 
@@ -120,9 +115,10 @@ func (g ginHttp) AddGroupRoute(method string, path string, group string, config 
 	}
 
 	var handlers []gin.HandlerFunc
-	handlers = append(handlers, g.definePreBehavior(config.Config)...)
+	handlers = append(handlers, g.defineBehavior(config.Config)...)
+	handlers = append(handlers, array_interface2HandlerFunc(config.CustomPreServiceHandlers)...)
+	handlers = append(handlers, array_interface2HandlerFunc(config.CustomPostServiceHandlers)...)
 	handlers = append(handlers, g.wrapService(service))
-	handlers = append(handlers, g.definePostBehavior(config.Config)...)
 
 	groupRef.Handle(method, path, handlers...)
 	return nil
@@ -130,9 +126,10 @@ func (g ginHttp) AddGroupRoute(method string, path string, group string, config 
 
 func (g ginHttp) AddRoute(method string, path string, config api.ConfigRoute, service api.Service) error {
 	var handlers []gin.HandlerFunc
-	handlers = append(handlers, g.definePreBehavior(config.Config)...)
+	handlers = append(handlers, g.defineBehavior(config.Config)...)
+	handlers = append(handlers, array_interface2HandlerFunc(config.CustomPreServiceHandlers)...)
+	handlers = append(handlers, array_interface2HandlerFunc(config.CustomPostServiceHandlers)...)
 	handlers = append(handlers, g.wrapService(service))
-	handlers = append(handlers, g.definePostBehavior(config.Config)...)
 
 	g.engine.Handle(method, path, handlers...)
 	return nil
