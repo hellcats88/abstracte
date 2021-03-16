@@ -27,13 +27,11 @@ type Config struct {
 
 type ConfigGroup struct {
 	Config
-	CustomPreHandlers  []interface{}
-	CustomPostHandlers []interface{}
+	Handlers []interface{}
 }
 
 type ConfigRoute struct {
 	Config
-	CustomPreServiceHandlers  []interface{}
-	CustomPostServiceHandlers []interface{}
-	ServiceHandler            []interface{}
+	CustomHandlers []interface{}
+	ServiceHandler []interface{}
 }
