@@ -42,6 +42,8 @@ github.com/hellcats88/abstracte v0.0.0-20210312095415-9a3981efc7fb h1:mgKoTdsNat
 github.com/hellcats88/abstracte v0.0.0-20210312095415-9a3981efc7fb/go.mod h1:37JdHPR/3d1ng23oS/2VgSLrqbNvxaemu3EamORk6Nk=
 github.com/hellcats88/abstracte v0.0.0-20210312095614-84d62fba21fd h1:zFykkezbt5eJeCB6TGofMli+0MWa3uVZf3aglN7SKDA=
 github.com/hellcats88/abstracte v0.0.0-20210312095614-84d62fba21fd/go.mod h1:37JdHPR/3d1ng23oS/2VgSLrqbNvxaemu3EamORk6Nk=
+github.com/hellcats88/abstracte v0.0.0-20210316094228-4ede10e5eb73 h1:AO5WOFS5BIE2SVzTW/2DEqIByhLJds66lNmPxsiStrI=
+github.com/hellcats88/abstracte v0.0.0-20210316094228-4ede10e5eb73/go.mod h1:37JdHPR/3d1ng23oS/2VgSLrqbNvxaemu3EamORk6Nk=
 github.com/json-iterator/go v1.1.9 h1:9yzud/Ht36ygwatGx56VwCZtlI/2AD15T1X2sjSuGns=
 github.com/json-iterator/go v1.1.9/go.mod h1:KdQUCv79m/52Kvf8AW2vK1V8akMuk1QjK/uOdHXbAo4=
 github.com/leodido/go-urn v1.2.0 h1:hpXL4XnriNwQ/ABnpepYM/1vCLWNDfUNts8dX3xTG6Y=
