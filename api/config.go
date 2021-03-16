@@ -27,7 +27,8 @@ type Config struct {
 
 type ConfigGroup struct {
 	Config
-	CustomHandlers []interface{}
+	CustomPreHandlers  []interface{}
+	CustomPostHandlers []interface{}
 }
 
 type ConfigRoute struct {
