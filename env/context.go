@@ -1,15 +1,9 @@
 package env
 
-import "os"
-
-type Context struct {
-	Name string
+type Context interface {
+	Name() string
 }
 
-func New(name string) Context {
-	return Context{Name: name}
-}
-
-func NewFromEnvVar(name string) Context {
-	return Context{Name: os.Getenv(name)}
+type ContextFactory interface {
+	Create() Context
 }

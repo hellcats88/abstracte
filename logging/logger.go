@@ -1,7 +1,6 @@
 package logging
 
 import (
-	"strings"
 	"time"
 )
 
@@ -97,25 +96,4 @@ type Logger interface {
 type Factory interface {
 	Create() Logger
 	CreateFromConfig(Config) Logger
-}
-
-// Atol converts a string into a logger level. Utility function
-func Atol(level string) Level {
-	var logLevel Level
-	switch strings.ToLower(level) {
-	case "error":
-		logLevel = Error
-	case "info":
-		logLevel = Info
-	case "warn":
-		logLevel = Warn
-	case "debug":
-		logLevel = Debug
-	case "trace":
-		logLevel = Trace
-	default:
-		logLevel = Info
-	}
-
-	return logLevel
 }

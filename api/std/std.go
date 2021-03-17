@@ -39,6 +39,7 @@ func array_interface2Handler(arr []interface{}) []handler {
 type group struct {
 	name     string
 	handlers []handler
+	subPath  string
 }
 
 type route struct {
@@ -148,6 +149,7 @@ func (g stdHttp) AddGroup(name string, subPath string, config api.ConfigGroup) e
 	g.groups[name] = group{
 		name:     name,
 		handlers: handlers,
+		subPath:  subPath,
 	}
 
 	return nil
@@ -159,7 +161,7 @@ func (g stdHttp) AddGroupRoute(method string, path string, group string, config 
 		return fmt.Errorf("Group %s does not exists, skipping route %s creation", group, path)
 	}
 
-	http.HandleFunc(path, func(rw http.ResponseWriter, r *http.Request) {
+	http.HandleFunc(groupRef.subPath+"/"+path, func(rw http.ResponseWriter, r *http.Request) {
 		var handlers []handler
 		handlers = append(handlers, groupRef.handlers...)
 		handlers = append(handlers, g.defineBehavior(config.Config)...)
