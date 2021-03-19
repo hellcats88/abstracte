@@ -20,9 +20,20 @@ const (
 	ConfigTenantFromHeaders ConfigTenant = 0x1
 )
 
+type ConfigTx uint
+
+const TxKey = "_abstracte_api_config_tx_key"
+const TxIdx = 0x1
+
+const (
+	ConfigTxManaged   ConfigTx = 0x1
+	ConfigTxUnmanaged ConfigTx = 0x2
+)
+
 type Config struct {
 	Log    ConfigLog
 	Tenant ConfigTenant
+	Tx     ConfigTx
 }
 
 type ConfigGroup struct {
