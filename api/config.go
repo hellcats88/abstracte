@@ -40,7 +40,7 @@ type Config struct {
 	Tenant      ConfigTenant
 	Tx          ConfigTx
 	InputModel  interface{}
-	InputParams interface{}
+	InputParams []string
 	QueryParams interface{}
 }
 
