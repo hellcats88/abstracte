@@ -32,11 +32,16 @@ const (
 
 const RuntimeKey = "_abstracte_api_runtime_key"
 const InputModelKey = "_abstracte_api_inputmodel_key"
+const InputParamsKey = "_abstracte_api_inputparams_key"
+const QueryParamsKey = "_abstracte_api_queryparams_key"
 
 type Config struct {
-	Log    ConfigLog
-	Tenant ConfigTenant
-	Tx     ConfigTx
+	Log         ConfigLog
+	Tenant      ConfigTenant
+	Tx          ConfigTx
+	InputModel  interface{}
+	InputParams interface{}
+	QueryParams interface{}
 }
 
 type ConfigGroup struct {
