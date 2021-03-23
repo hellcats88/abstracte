@@ -31,6 +31,7 @@ const (
 )
 
 const RuntimeKey = "_abstracte_api_runtime_key"
+const InputModelKey = "_abstracte_api_inputmodel_key"
 
 type Config struct {
 	Log    ConfigLog
