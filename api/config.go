@@ -30,6 +30,8 @@ const (
 	ConfigTxUnmanaged ConfigTx = 0x2
 )
 
+const RuntimeKey = "_abstracte_api_runtime_key"
+
 type Config struct {
 	Log    ConfigLog
 	Tenant ConfigTenant
