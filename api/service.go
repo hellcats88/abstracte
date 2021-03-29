@@ -8,7 +8,7 @@ type ServiceInput interface {
 	Raw() interface{}
 	RuntimeCtx() runtime.Context
 	Model() interface{}
-	InputParams() interface{}
+	InputParams() map[string]string
 	QueryParams() interface{}
 }
 
