@@ -20,3 +20,5 @@ type ServiceOutput interface {
 }
 
 type Service func(runtime.Context, ServiceInput) (ServiceOutput, error)
+
+const ServiceResultKey string = "_abstracte_serviceresult_key"
