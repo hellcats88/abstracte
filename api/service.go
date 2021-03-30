@@ -5,11 +5,11 @@ import (
 )
 
 type ServiceInput interface {
-	Raw() interface{}
-	RuntimeCtx() runtime.Context
+	RawCtx() interface{}
 	Model() interface{}
 	InputParams() map[string]string
 	QueryParams() interface{}
+	Headers() []string
 }
 
 type ServiceOutput interface {
