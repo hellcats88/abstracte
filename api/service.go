@@ -9,7 +9,7 @@ type ServiceInput interface {
 	Model() interface{}
 	InputParams() map[string]string
 	QueryParams() interface{}
-	Headers() []string
+	Headers() interface{}
 }
 
 type ServiceOutput interface {

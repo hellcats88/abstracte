@@ -34,6 +34,7 @@ const RuntimeKey = "_abstracte_api_runtime_key"
 const InputModelKey = "_abstracte_api_inputmodel_key"
 const InputParamsKey = "_abstracte_api_inputparams_key"
 const QueryParamsKey = "_abstracte_api_queryparams_key"
+const HeadersModelKey = "_abstracte_api_headersmodel_key"
 
 type Config struct {
 	Log         ConfigLog
@@ -42,6 +43,7 @@ type Config struct {
 	InputModel  interface{}
 	InputParams []string
 	QueryParams interface{}
+	Headers     interface{}
 }
 
 type ConfigGroup struct {
