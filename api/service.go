@@ -19,6 +19,6 @@ type ServiceOutput interface {
 	ResponseModel() interface{}
 }
 
-type Service func(runtime.Context, ServiceInput) (ServiceOutput, error)
+type Service func(runtime.Context, ServiceInput) ServiceOutput
 
 const ServiceResultKey string = "_abstracte_serviceresult_key"
