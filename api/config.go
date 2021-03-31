@@ -1,5 +1,26 @@
 package api
 
+type C struct {
+	Handler  interface{}
+	Priority int
+}
+
+type CArr []C
+
+func (c CArr) Len() int {
+	return len(c)
+}
+
+func (c CArr) Less(i, j int) bool {
+	return c[i].Priority < c[j].Priority
+}
+
+func (c CArr) Swap(i, j int) {
+	tmp := c[i]
+	c[i] = c[j]
+	c[j] = tmp
+}
+
 type ConfigLog uint
 
 const LogKey = "_abstracte_api_config_log_key"
@@ -48,11 +69,10 @@ type Config struct {
 
 type ConfigGroup struct {
 	Config
-	Handlers []interface{}
+	Handlers CArr
 }
 
 type ConfigRoute struct {
 	Config
-	CustomHandlers []interface{}
-	ServiceHandler []interface{}
+	CustomHandlers CArr
 }
