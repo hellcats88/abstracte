@@ -1,24 +1,11 @@
 package api
 
-type C struct {
-	Handler  interface{}
-	Priority int
+type InC struct {
+	Handler interface{}
 }
 
-type CArr []C
-
-func (c CArr) Len() int {
-	return len(c)
-}
-
-func (c CArr) Less(i, j int) bool {
-	return c[i].Priority < c[j].Priority
-}
-
-func (c CArr) Swap(i, j int) {
-	tmp := c[i]
-	c[i] = c[j]
-	c[j] = tmp
+type OutC struct {
+	Handler interface{}
 }
 
 type ConfigLog uint
@@ -69,10 +56,12 @@ type Config struct {
 
 type ConfigGroup struct {
 	Config
-	Handlers CArr
+	InHandlers  []InC
+	OutHandlers []OutC
 }
 
 type ConfigRoute struct {
 	Config
-	CustomHandlers CArr
+	InHandlers  []InC
+	OutHandlers []OutC
 }
