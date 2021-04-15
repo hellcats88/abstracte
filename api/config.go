@@ -1,10 +1,6 @@
 package api
 
-type InC struct {
-	Handler interface{}
-}
-
-type OutC struct {
+type C struct {
 	Handler interface{}
 }
 
@@ -56,12 +52,12 @@ type Config struct {
 
 type ConfigGroup struct {
 	Config
-	InHandlers  []InC
-	OutHandlers []OutC
+	InHandlers  []C
+	OutHandlers []C
 }
 
 type ConfigRoute struct {
 	Config
-	InHandlers  []InC
-	OutHandlers []OutC
+	InHandlers  []C
+	OutHandlers []C
 }
