@@ -59,6 +59,7 @@ type ConfigBuilder interface {
 	CustomInputParam(C) ConfigBuilder
 	QueryParams(interface{}) ConfigBuilder
 	CustomQueryParams(C) ConfigBuilder
-	Custom(C) ConfigBuilder
+	CustomBeforeRun(C) ConfigBuilder
+	CustomAfterRun(C) ConfigBuilder
 	Build() Config
 }
