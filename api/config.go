@@ -40,24 +40,25 @@ const InputParamsKey = "_abstracte_api_inputparams_key"
 const QueryParamsKey = "_abstracte_api_queryparams_key"
 const HeadersModelKey = "_abstracte_api_headersmodel_key"
 
-type Config struct {
-	Log         ConfigLog
-	Tenant      ConfigTenant
-	Tx          ConfigTx
-	InputModel  interface{}
-	InputParams []string
-	QueryParams interface{}
-	Headers     interface{}
+type Config interface {
+	Valid() bool
 }
 
-type ConfigGroup struct {
-	Config
-	InHandlers  []C
-	OutHandlers []C
-}
-
-type ConfigRoute struct {
-	Config
-	InHandlers  []C
-	OutHandlers []C
+type ConfigBuilder interface {
+	Log(ConfigLog) ConfigBuilder
+	CustomLog(C) ConfigBuilder
+	Tenant(ConfigTenant) ConfigBuilder
+	CustomTenant(C) ConfigBuilder
+	Tx(ConfigTx) ConfigBuilder
+	CustomTx(C) ConfigBuilder
+	Headers(interface{}) ConfigBuilder
+	CustomHeaders(C) ConfigBuilder
+	InputModel(interface{}) ConfigBuilder
+	CustomInputModel(C) ConfigBuilder
+	InputParam(name string) ConfigBuilder
+	CustomInputParam(C) ConfigBuilder
+	QueryParams(interface{}) ConfigBuilder
+	CustomQueryParams(C) ConfigBuilder
+	Custom(C) ConfigBuilder
+	Build() Config
 }
