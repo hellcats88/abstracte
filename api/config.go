@@ -55,7 +55,7 @@ type ConfigBuilder interface {
 	CustomHeaders(C) ConfigBuilder
 	InputModel(interface{}) ConfigBuilder
 	CustomInputModel(C) ConfigBuilder
-	InputParam(name string) ConfigBuilder
+	InputParams(name []string) ConfigBuilder
 	CustomInputParam(C) ConfigBuilder
 	QueryParams(interface{}) ConfigBuilder
 	CustomQueryParams(C) ConfigBuilder
